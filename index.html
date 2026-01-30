@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neel Gosavi | Full Stack Developer & Machine Learning</title>
+  <meta name="description" content="Neel Gosavi is a Full Stack Developer and Computer Engineering student skilled in MERN, Machine Learning, Java, and scalable web applications." />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"],
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'gradient': 'gradient 8s ease infinite',
+            'pulse-slow': 'pulse 4s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            gradient: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            }
+          }
+        },
+      },
+    };
+  </script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Custom animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200% 200%;
+      animation: gradient 8s ease infinite;
+    }
+    
+    .gradient-border {
+      position: relative;
+      border: 2px solid transparent;
+      background: linear-gradient(#0f172a, #0f172a) padding-box,
+                  linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899) border-box;
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .skill-pill {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-pill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .skill-pill:hover::after {
+      left: 100%;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .hero-glow {
+      filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.3));
+    }
+    
+    .ml-gradient {
+      background: linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200% 200%;
+      animation: gradient 8s ease infinite;
+    }
+    
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .mobile-menu.open {
+      max-height: 300px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-950 text-gray-100 font-sans antialiased">
+
+<!-- ================= NAVBAR ================= -->
+<header class="sticky top-0 z-50 bg-gray-950/90 backdrop-blur-xl border-b border-gray-800/50">
+  <nav class="max-w-6xl mx-auto px-4 py-5">
+    <div class="flex justify-between items-center">
+      <h1 class="text-xl font-bold tracking-tight">
+        <span class="gradient-text">Neel Gosavi</span>
+      </h1>
+
+      <ul class="hidden md:flex gap-8 text-sm font-medium">
+        <li><a href="#about" class="nav-link text-gray-300 hover:text-white transition">About</a></li>
+        <li><a href="#skills" class="nav-link text-gray-300 hover:text-white transition">Skills</a></li>
+        <li><a href="#experience" class="nav-link text-gray-300 hover:text-white transition">Experience</a></li>
+        <li><a href="#projects" class="nav-link text-gray-300 hover:text-white transition">Projects</a></li>
+        <li><a href="#contact" class="nav-link text-gray-300 hover:text-white transition">Contact</a></li>
+      </ul>
+      
+      <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden mt-4">
+      <ul class="flex flex-col gap-4 text-sm font-medium">
+        <li><a href="#about" class="block py-2 text-gray-300 hover:text-white transition">About</a></li>
+        <li><a href="#skills" class="block py-2 text-gray-300 hover:text-white transition">Skills</a></li>
+        <li><a href="#experience" class="block py-2 text-gray-300 hover:text-white transition">Experience</a></li>
+        <li><a href="#projects" class="block py-2 text-gray-300 hover:text-white transition">Projects</a></li>
+        <li><a href="#contact" class="block py-2 text-gray-300 hover:text-white transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="max-w-6xl mx-auto px-4 py-20 md:py-36 fade-up">
+  <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+    <div class="flex-1">
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium border border-blue-500/20">
+          <i class="fas fa-code mr-2"></i>Full Stack Developer
+        </span>
+        <span class="inline-block px-4 py-1.5 rounded-full bg-green-500/10 text-green-400 text-sm font-medium border border-green-500/20">
+          <i class="fas fa-brain mr-2"></i>Machine Learning
+        </span>
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6">
+        Building Intelligent
+        <br class="hidden md:block" />
+        <span class="gradient-text hero-glow">Digital Solutions</span>
+      </h2>
+
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed mb-8 md:mb-10">
+        Computer Engineering student passionate about crafting scalable full stack applications and intelligent machine learning models using modern technologies.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="assets/images/Neel_Resume.pdf"
+          class="gradient-border rounded-xl px-6 md:px-8 py-3 md:py-4 font-semibold text-center hover:scale-105 transition-transform duration-300 text-sm md:text-base"
+        >
+          <i class="fas fa-download mr-3"></i>Download Resume
+        </a>
+        <a
+          href="#projects"
+          class="border border-gray-700 hover:border-gray-500 rounded-xl px-6 md:px-8 py-3 md:py-4 font-medium text-center hover:scale-105 transition-transform duration-300 text-sm md:text-base"
+        >
+          <i class="fas fa-code-branch mr-3"></i>View Projects
+        </a>
+      </div>
+    </div>
+    
+    <div class="flex-1 flex justify-center mt-12 md:mt-0">
+      <div class="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
+        <div class="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-full w-full h-full border border-gray-700/50 flex items-center justify-center">
+          <div class="text-center p-6 md:p-8">
+            <i class="fas fa-laptop-code text-5xl md:text-6xl lg:text-7xl text-blue-400 mb-4"></i>
+            <p class="text-base md:text-lg font-semibold">MERN | ML | Java</p>
+            <p class="text-gray-400 text-xs md:text-sm mt-2">Full Stack & AI</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="max-w-6xl mx-auto px-4 py-16 md:py-24 fade-up">
+  <div class="flex items-center gap-4 mb-8 md:mb-10">
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold flex items-center gap-3">
+      <i class="fas fa-user text-blue-500 text-xl md:text-2xl"></i>
+      About Me
+    </h2>
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+  </div>
+
+  <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-6 md:p-8 lg:p-12 border border-gray-800/50 card-hover">
+    <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+      I'm a Computer Engineering student at Terna Engineering College with expertise in both full-stack web development and machine learning. I build scalable web applications with modern technologies while also developing intelligent models that solve real-world problems. My skills span across MERN stack, Java-based systems, and machine learning fundamentals.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-8">
+      <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-900/50">
+        <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-blue-400 text-lg md:text-xl"></i>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm md:text-base">Education</h4>
+          <p class="text-xs md:text-sm text-gray-400">Computer Engineering</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-900/50">
+        <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-purple-500/10 flex items-center justify-center">
+          <i class="fas fa-brain text-purple-400 text-lg md:text-xl"></i>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm md:text-base">Specialization</h4>
+          <p class="text-xs md:text-sm text-gray-400">Full Stack & ML</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-900/50">
+        <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-green-500/10 flex items-center justify-center">
+          <i class="fas fa-search text-green-400 text-lg md:text-xl"></i>
+        </div>
+        <div>
+          <h4 class="font-semibold text-sm md:text-base">Seeking</h4>
+          <p class="text-xs md:text-sm text-gray-400">Software & ML Roles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="bg-gradient-to-b from-gray-950 to-gray-900 py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4 fade-up">
+    <div class="flex items-center gap-4 mb-8 md:mb-10">
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold flex items-center gap-3">
+        <i class="fas fa-code text-blue-500 text-xl md:text-2xl"></i>
+        Technical Skills
+      </h2>
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+      <!-- Full Stack Development -->
+      <div class="skill-pill bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 hover:border-blue-500/30">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-500/10 flex items-center justify-center">
+            <i class="fas fa-layer-group text-2xl md:text-3xl text-blue-400"></i>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold">Full Stack Development</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">React</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Node.js</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Express.js</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MongoDB</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">JavaScript</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">HTML5/CSS3</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Tailwind CSS</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">REST APIs</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Firebase</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Git/GitHub</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Java</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">JDBC</span>
+        </div>
+      </div>
+      
+      <!-- Machine Learning -->
+      <div class="skill-pill bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 hover:border-green-500/30">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-green-500/10 flex items-center justify-center">
+            <i class="fas fa-brain text-2xl md:text-3xl text-green-400"></i>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold">Machine Learning</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Python</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">TensorFlow</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">PyTorch</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Scikit-learn</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Pandas</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">NumPy</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">NLP</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Matplotlib</span>
+        </div>
+      </div>
+      
+      <!-- Tools & Others -->
+      <div class="skill-pill bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 hover:border-purple-500/30">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-purple-500/10 flex items-center justify-center">
+            <i class="fas fa-tools text-2xl md:text-3xl text-purple-400"></i>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold">Tools & Deployment</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">VS Code</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Postman</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Docker</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MySQL</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MongoDB Atlas</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Google Colab</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">AWS</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Vercel</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Netlify</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" class="max-w-6xl mx-auto px-4 py-16 md:py-24 fade-up">
+  <div class="flex items-center gap-4 mb-8 md:mb-10">
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold flex items-center gap-3">
+      <i class="fas fa-briefcase text-blue-500 text-xl md:text-2xl"></i>
+      Experience
+    </h2>
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+  </div>
+
+  <div class="space-y-6 md:space-y-8">
+    <div class="gradient-border rounded-2xl p-6 md:p-8 card-hover">
+      <div class="flex items-start gap-6">
+        <div class="hidden md:block">
+          <div class="w-16 h-16 rounded-xl bg-blue-500/10 flex items-center justify-center">
+            <i class="fas fa-laptop-code text-2xl text-blue-400"></i>
+          </div>
+        </div>
+        <div class="flex-1">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-0">Full Stack Developer Intern</h3>
+            <span class="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs md:text-sm font-medium">
+              <i class="fas fa-calendar"></i> 3-Month Internship
+            </span>
+          </div>
+          
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-blue-400 mt-1 text-sm md:text-base"></i>
+              <span class="text-gray-300 text-sm md:text-base">Developed a full stack Learning Management System (LMS) using MERN stack</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-blue-400 mt-1 text-sm md:text-base"></i>
+              <span class="text-gray-300 text-sm md:text-base">Implemented secure authentication, admin dashboards, and RESTful APIs</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-blue-400 mt-1 text-sm md:text-base"></i>
+              <span class="text-gray-300 text-sm md:text-base">Collaborated on UI/UX design and database schema integration</span>
+            </li>
+          </ul>
+          
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MERN Stack</span>
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">REST APIs</span>
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Authentication</span>
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MongoDB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gradient-border rounded-2xl p-6 md:p-8 card-hover">
+      <div class="flex items-start gap-6">
+        <div class="hidden md:block">
+          <div class="w-16 h-16 rounded-xl bg-green-500/10 flex items-center justify-center">
+            <i class="fas fa-brain text-2xl text-green-400"></i>
+          </div>
+        </div>
+        <div class="flex-1">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-0">Machine Learning Projects</h3>
+            <span class="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-green-500/10 text-green-400 text-xs md:text-sm font-medium">
+              <i class="fas fa-calendar"></i> Academic & Personal
+            </span>
+          </div>
+          
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-green-400 mt-1 text-sm md:text-base"></i>
+              <span class="text-gray-300 text-sm md:text-base">Developed machine learning models for classification and regression problems</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-green-400 mt-1 text-sm md:text-base"></i>
+              <span class="text-gray-300 text-sm md:text-base">Built predictive models using Scikit-learn and TensorFlow</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-green-400 mt-1 text-sm md:text-base"></i>
+              <span class="text-gray-300 text-sm md:text-base">Worked on NLP projects including sentiment analysis and text classification</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-check-circle text-green-400 mt-1 text-sm md:text-base"></i>
+              <span class="text-gray-300 text-sm md:text-base">Implemented data preprocessing and feature engineering pipelines</span>
+            </li>
+          </ul>
+          
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Python</span>
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">TensorFlow</span>
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Scikit-learn</span>
+            <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Pandas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="bg-gradient-to-b from-gray-900 to-gray-950 py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4 fade-up">
+    <div class="flex items-center gap-4 mb-8 md:mb-10">
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold flex items-center gap-3">
+        <i class="fas fa-project-diagram text-blue-500 text-xl md:text-2xl"></i>
+        Projects
+      </h2>
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+            <!-- Upskillr LMS Project - Small icons only version -->
+      <article class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-6 md:p-8 border border-gray-800/50 card-hover">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-500/10 flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-xl md:text-2xl text-blue-400"></i>
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold mb-1">Upskillr – Learning Management System</h3>
+              <p class="text-xs md:text-sm text-blue-400 font-medium">
+                <i class="fas fa-tag mr-2"></i>MERN Stack, MongoDB, Express, React, Node.js
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <!-- Live Demo Button -->
+            <a href="https://upskillr-frontend-nine.vercel.app/" target="_blank" 
+               class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-600 flex items-center justify-center hover:bg-green-700 hover:scale-110 transition group"
+               title="Live Demo">
+              <i class="fas fa-external-link-alt text-white text-sm md:text-base"></i>
+              <div class="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap transition-opacity">
+                Live Demo
+              </div>
+            </a>
+            <!-- GitHub Button -->
+            <a href="https://github.com/Madhu-Wala/Upskillr-project-repo" target="_blank" 
+               class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 hover:scale-110 transition group"
+               title="View Code">
+              <i class="fab fa-github text-gray-300 text-sm md:text-base"></i>
+              <div class="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap transition-opacity">
+                View Code
+              </div>
+            </a>
+          </div>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 text-sm md:text-base">
+          A comprehensive LMS platform featuring user authentication, course management, progress tracking, and interactive dashboards. Built with scalability in mind and modern UI/UX principles.
+        </p>
+        
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">React</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Node.js</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MongoDB</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">JWT Auth</span>
+        </div>
+      </article>
+
+      <!-- Library Management System -->
+      <article class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-6 md:p-8 border border-gray-800/50 card-hover">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-red-500/10 flex items-center justify-center">
+              <i class="fas fa-book text-xl md:text-2xl text-red-400"></i>
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold mb-1">Library Management System</h3>
+              <p class="text-xs md:text-sm text-red-400 font-medium">
+                <i class="fas fa-tag mr-2"></i>Java, JDBC, MySQL, Swing GUI
+              </p>
+            </div>
+          </div>
+          <a href="https://github.com/NeelGosavi/Library_Management" target="_blank" 
+              class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 hover:scale-110 transition group"
+              title="View Code">
+            <i class="fab fa-github text-gray-300 text-sm md:text-base"></i>
+            <div class="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap transition-opacity">
+              View Code
+            </div>
+          </a>
+
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 text-sm md:text-base">
+          A desktop application for library management with features for book inventory, member management, issue/return tracking, and fine calculation. Built with Java Swing for GUI and MySQL for database management.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Java</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">JDBC</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MySQL</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Swing GUI</span>
+        </div>
+      </article>
+
+      <!-- Inventory Management System -->
+      <article class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-6 md:p-8 border border-gray-800/50 card-hover">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-purple-500/10 flex items-center justify-center">
+              <i class="fas fa-boxes text-xl md:text-2xl text-purple-400"></i>
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold mb-1">Inventory Management System</h3>
+              <p class="text-xs md:text-sm text-purple-400 font-medium">
+                <i class="fas fa-tag mr-2"></i>React, Node.js, Express, Firebase
+              </p>
+            </div>
+          </div>
+          <a href="https://github.com/ThatGUY12034/Inventory_Management-Flask-" target="_blank" 
+              class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 hover:scale-110 transition group"
+              title="View Code">
+            <i class="fab fa-github text-gray-300 text-sm md:text-base"></i>
+            <div class="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap transition-opacity">
+              View Code
+            </div>
+          </a>
+
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 text-sm md:text-base">
+          A robust inventory management system with role-based access control, real-time stock tracking, automated alerts, and comprehensive reporting features.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">React</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Express.js</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Firebase</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Real-time</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="max-w-6xl mx-auto px-4 py-16 md:py-24 fade-up">
+  <div class="flex items-center gap-4 mb-8 md:mb-10">
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold flex items-center gap-3">
+      <i class="fas fa-envelope text-blue-500 text-xl md:text-2xl"></i>
+      Get In Touch
+    </h2>
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+    <div>
+      <h3 class="text-xl md:text-2xl font-bold mb-6">Let's Connect</h3>
+      <p class="text-gray-400 mb-8 leading-relaxed text-sm md:text-base">
+        I'm currently seeking opportunities in software development and machine learning roles. Feel free to reach out for collaborations, projects, or just to say hello!
+      </p>
+      
+      <div class="space-y-4 md:space-y-6">
+        <!-- WhatsApp Contact -->
+        <a href="https://wa.me/919152100607?text=Hello%20Neel%2C%20I%27m%20interested%20in%20connecting%20with%20you%20regarding%20your%20portfolio." 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="flex items-center gap-4 p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-green-500/30 transition group">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-green-500/10 flex items-center justify-center group-hover:scale-110 transition">
+            <i class="fab fa-whatsapp text-lg md:text-xl text-green-500"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm md:text-base">WhatsApp</h4>
+            <p class="text-gray-400 text-xs md:text-sm">Message me directly</p>
+          </div>
+        </a>
+        
+        <a href="mailto:neelgosavi07@gmail.com" class="flex items-center gap-4 p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-red-500/30 transition group">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-red-500/10 flex items-center justify-center group-hover:scale-110 transition">
+            <i class="fas fa-envelope text-lg md:text-xl text-red-400"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm md:text-base">Email</h4>
+            <p class="text-gray-400 text-xs md:text-sm">neelgosavi07@gmail.com</p>
+          </div>
+        </a>
+        
+        <a href="https://github.com/NeelGosavi" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-purple-500/30 transition group">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gray-800 flex items-center justify-center group-hover:scale-110 transition">
+            <i class="fab fa-github text-lg md:text-xl text-gray-300"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm md:text-base">GitHub</h4>
+            <p class="text-gray-400 text-xs md:text-sm">github.com/NeelGosavi</p>
+          </div>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/neel-gosavi-4b1099358/" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/30 transition group">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-blue-500/10 flex items-center justify-center group-hover:scale-110 transition">
+            <i class="fab fa-linkedin text-lg md:text-xl text-blue-400"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm md:text-base">LinkedIn</h4>
+            <p class="text-gray-400 text-xs md:text-sm">linkedin.com/in/neel-gosavi-4b1099358/</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-6 md:p-8 border border-gray-800/50">
+      <h3 class="text-xl md:text-2xl font-bold mb-6">Quick Links</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <a href="assets/images/Neel_Resume.pdf" class="flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-gray-900/50 hover:bg-gray-800/50 transition group">
+          <i class="fas fa-file-pdf text-2xl md:text-3xl text-red-400 mb-3 group-hover:scale-110 transition"></i>
+          <span class="font-medium text-sm md:text-base">Resume</span>
+        </a>
+        
+        <a href="#projects" class="flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-gray-900/50 hover:bg-gray-800/50 transition group">
+          <i class="fas fa-code text-2xl md:text-3xl text-blue-400 mb-3 group-hover:scale-110 transition"></i>
+          <span class="font-medium text-sm md:text-base">Projects</span>
+        </a>
+        
+        <a href="#skills" class="flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-gray-900/50 hover:bg-gray-800/50 transition group">
+          <i class="fas fa-cogs text-2xl md:text-3xl text-purple-400 mb-3 group-hover:scale-110 transition"></i>
+          <span class="font-medium text-sm md:text-base">Skills</span>
+        </a>
+        
+        <a href="#experience" class="flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-gray-900/50 hover:bg-gray-800/50 transition group">
+          <i class="fas fa-briefcase text-2xl md:text-3xl text-yellow-400 mb-3 group-hover:scale-110 transition"></i>
+          <span class="font-medium text-sm md:text-base">Experience</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-gradient-to-t from-gray-950 to-gray-900 pt-8 md:pt-12 pb-6 md:pb-8 border-t border-gray-800/50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-6 md:mb-8">
+      <div class="text-center md:text-left">
+        <h3 class="text-xl md:text-2xl font-bold gradient-text mb-2">Neel Gosavi</h3>
+        <p class="text-gray-400 text-sm">Full Stack Developer & Machine Learning</p>
+      </div>
+      
+      <div class="flex gap-4 md:gap-6">
+        <a href="https://wa.me/919152100607?text=Hello%20Neel%2C%20I%27m%20interested%20in%20connecting%20with%20you%20regarding%20your%20portfolio." 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 hover:scale-110 transition">
+          <i class="fab fa-whatsapp text-gray-300 text-sm"></i>
+        </a>
+        <a href="mailto:neelgosavi07@gmail.com" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-500 hover:scale-110 transition">
+          <i class="fas fa-envelope text-gray-300 text-sm"></i>
+        </a>
+        <a href="https://github.com/NeelGosavi" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 hover:scale-110 transition">
+          <i class="fab fa-github text-gray-300 text-sm"></i>
+        </a>
+        <a href="https://linkedin.com/in/neelgosavi" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 hover:scale-110 transition">
+          <i class="fab fa-linkedin-in text-gray-300 text-sm"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="text-center text-gray-500 text-xs md:text-sm pt-6 md:pt-8 border-t border-gray-800/30">
+      © 2026 Neel Gosavi. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- ================= ANIMATION SCRIPT ================= -->
+<script>
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+      // Close mobile menu if open
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>
