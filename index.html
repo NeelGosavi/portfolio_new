@@ -181,20 +181,13 @@
 <body class="bg-gray-950 text-gray-100 font-sans antialiased">
   <!-- ================= BACKGROUND ANIMATIONS ================= -->
   <div class="fixed inset-0 -z-10 overflow-hidden">
-    <!-- Animated Gradient Mesh -->
     <div class="animated-mesh"></div>
-    
-    <!-- Floating Particles -->
     <div class="particles-container absolute inset-0"></div>
-    
-    <!-- Geometric Shapes -->
     <div class="shapes">
       <div class="shape shape-1"></div>
       <div class="shape shape-2"></div>
       <div class="shape shape-3"></div>
     </div>
-    
-    <!-- Minimal Dots -->
     <div class="minimal-dots"></div>
   </div>
   
@@ -239,7 +232,6 @@
 
 <!-- ================= HERO ================= -->
 <section class="max-w-6xl mx-auto px-4 py-20 md:py-36 fade-up relative">
-  <!-- Floating Elements -->
   <div class="absolute top-20 left-10 w-4 h-4 rounded-full bg-blue-500/30 animate-float animation-delay-1000"></div>
   <div class="absolute bottom-20 right-10 w-6 h-6 rounded-full bg-purple-500/30 animate-float animation-delay-2000"></div>
   <div class="absolute top-1/2 left-20 w-3 h-3 rounded-full bg-green-500/30 animate-float animation-delay-3000"></div>
@@ -262,7 +254,6 @@
         <span class="gradient-text hero-glow">Digital Solutions</span>
       </h2>
 
-      <!-- Typing Animation -->
       <p class="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed mb-8 md:mb-10">
         <span id="typed-text"></span>
         <span class="typing-cursor">|</span>
@@ -350,7 +341,6 @@
 </section>
 
 <!-- ================= SKILLS ================= -->
-<!-- UPDATED: Added missing skills from projects (WebGL, SiGML, Stanza, Stanford Parser, Flask, Next.js, TypeScript, PostgreSQL, Stripe) -->
 <section id="skills" class="bg-gradient-to-b from-gray-950 to-gray-900 py-16 md:py-24 relative">
   <div class="max-w-6xl mx-auto px-4 fade-up">
     <div class="flex items-center gap-4 mb-8 md:mb-10">
@@ -363,7 +353,7 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-      <!-- Full Stack Development (expanded) -->
+      <!-- Full Stack Development -->
       <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 card-hover">
         <div class="flex items-center gap-4 mb-6">
           <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-blue-500/10 flex items-center justify-center">
@@ -388,10 +378,17 @@
           <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">TypeScript</span>
           <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">PostgreSQL</span>
           <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Stripe API</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Spring Boot</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">WebSocket</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">JWT Authentication</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">STOMP Protocol</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">SockJS</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Vite</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Monaco Editor</span>
         </div>
       </div>
       
-      <!-- Machine Learning & NLP (expanded with Stanza, Stanford Parser, Flask) -->
+      <!-- Machine Learning & NLP -->
       <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 card-hover">
         <div class="flex items-center gap-4 mb-6">
           <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-green-500/10 flex items-center justify-center">
@@ -414,13 +411,13 @@
         </div>
       </div>
       
-      <!-- Tools & Deployment (expanded with WebGL, SiGML) -->
+      <!-- Tools & Deployment -->
       <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 card-hover">
         <div class="flex items-center gap-4 mb-6">
           <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-purple-500/10 flex items-center justify-center">
             <i class="fas fa-tools text-2xl md:text-3xl text-purple-400"></i>
           </div>
-          <h3 class="text-lg md:text-xl font-bold">Tools & 3D Technologies</h3>
+          <h3 class="text-lg md:text-xl font-bold">Tools & Deployment</h3>
         </div>
         <div class="flex flex-wrap gap-2">
           <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">VS Code</span>
@@ -432,8 +429,9 @@
           <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">AWS</span>
           <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Vercel</span>
           <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Netlify</span>
-          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">WebGL</span>
-          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">SiGML</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Render</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Git</span>
+          <span class="px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Maven</span>
         </div>
       </div>
     </div>
@@ -551,6 +549,45 @@
     </div>
 
     <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      <!-- CodeCollab - Real-time Collaboration Platform -->
+      <article class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-6 md:p-8 border border-gray-800/50 card-hover">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-purple-500/10 flex items-center justify-center">
+              <i class="fas fa-code text-xl md:text-2xl text-purple-400"></i>
+            </div>
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold mb-1">CodeCollab</h3>
+              <p class="text-xs md:text-sm text-purple-400 font-medium">
+                <i class="fas fa-tag mr-2"></i>Spring Boot, React, WebSocket, MongoDB
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <a href="https://code-collab-five-teal.vercel.app/" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-600 flex items-center justify-center hover:bg-green-700 transition group" title="Live Demo">
+              <i class="fas fa-external-link-alt text-white text-sm md:text-base"></i>
+            </a>
+            <a href="https://github.com/NeelGosavi/codeCollab" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition group" title="View Code">
+              <i class="fab fa-github text-gray-300 text-sm md:text-base"></i>
+            </a>
+          </div>
+        </div>
+        <div class="mb-6 rounded-xl overflow-hidden border border-gray-700/50">
+          <img src="assets/images/CodeCollab.png" alt="CodeCollab Real-time Collaboration Platform" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="openLightbox(this.src, 'CodeCollab - Real-time Collaboration Platform')">
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 text-sm md:text-base">
+          A real-time collaborative coding platform where developers can write code together, share sessions, and review code in real-time. Features include live code editing, cursor tracking, typing indicators, participant management, and multi-language support (Java, Python, JavaScript) with code execution capabilities.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Spring Boot</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">React</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">WebSocket</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">MongoDB</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">JWT Auth</span>
+          <span class="px-2 md:px-3 py-1 rounded-full bg-gray-800 text-gray-300 text-xs md:text-sm">Real-time</span>
+        </div>
+      </article>
+
       <!-- Upskillr LMS Project -->
       <article class="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-2xl p-6 md:p-8 border border-gray-800/50 card-hover">
         <div class="flex justify-between items-start mb-6">
